@@ -1,68 +1,64 @@
 # Liu-Wai-Ki-Week-6---Tool-Design
-# 摘要关键点提取器工具
+# Key Points Extractor Tool
 
-## 工具描述
-从长文本中自动提取关键要点、行动项和利益相关者影响，帮助用户快速理解文档核心内容。
+## Tool Description
+Automatically extracts key points, action items, and stakeholder impact from long texts, helping users quickly understand the core content of documents.
 
-## 功能特点
-- **关键点提取**：识别最重要的3-5个句子
-- **摘要生成**：自动生成一句话摘要
-- **行动项识别**：找出文本中的行动计划
-- **利益相关者分析**：分析不同群体的影响
-- **文本统计**：提供基本的统计信息
+## Features
+- **Key Points Extraction**: Identifies the 3-5 most important sentences
+- **Summary Generation**: Automatically creates a one-sentence summary
+- **Action Items Recognition**: Identifies action plans mentioned in the text
+- **Stakeholder Impact Analysis**: Analyzes impact on different groups
+- **Text Statistics**: Provides basic statistical information
 
-## 安装依赖
+## Installation
 
 ```bash
 pip install python-dotenv
 ```
 
-## 配置 API Key（可选）
-
-1. **复制环境变量示例文件**：
+##  API Key Configuration (Optional)
 ```bash
 cp .env.example .env
 ```
 
-2. **编辑 `.env` 文件**，填入你的 DeepSeek API key：
+
+## Edit the .env file and add your DeepSeek API key:
 ```
-DEEPSEEK_API_KEY=sk-你的key在这里
+DEEPSEEK_API_KEY=sk-Your key
 ```
 
-3. **运行演示程序**：
+## **Run the demo program:**
 ```bash
 python demo.py
 ```
 
-## 使用示例
-
+## Usage Example
 ```python
 from tool import KeyPointsExtractor
 
-# 创建提取器
+# Create extractor instance
 extractor = KeyPointsExtractor()
 
-# 提取关键点
-text = "这是一段需要分析的文本..."
+# Extract key points
+text = "This is a text that needs analysis..."
 result = extractor.execute(text, max_points=5)
 
 if result["success"]:
     print(result["key_points"])
 else:
-    print(f"错误: {result['error']}")
+    print(f"Error: {result['error']}")
 ```
-
-##  输出格式示例
-
+## Output Format Example
 ```json
 {
     "success": true,
-    "key_points": ["Q3营收50亿美元，同比增长20%", "将在亚洲开设5家新工厂"],
-    "summary": "公司业绩增长但伴随重组裁员",
-    "action_items": ["开设新工厂", "裁员1000人"],
+    "key_points": ["Q3 revenue reached $5 billion, up 20% year-over-year", "Will open 5 new factories in Asia"],
+    "summary": "Company performance improves but with restructuring layoffs",
+    "action_items": ["Open new factories", "Lay off 1000 employees"],
     "stakeholder_impact": {
-        "investors": "正面影响",
-        "employees": "负面影响"
+        "investors": "positive impact",
+        "employees": "negative impact"
     },
     "statistics": {
         "total_characters": 350,
@@ -70,26 +66,23 @@ else:
     }
 }
 ```
-
-##  文件结构
-
+## File Structure
 ```
 .
-├── tool.py          # 工具实现
-├── demo.py          # 演示脚本
-├── README.md        # 本文档
-├── .env.example     # 环境变量示例
-└── .gitignore       # Git忽略文件
+├── tool.py          # Tool implementation
+├── demo.py          # Demo script
+├── README.md        # This document
+├── .env.example     # Environment variables example
+└── .gitignore       # Git ignore file
+🧪 Demo Content
+Running demo.py will showcase:
+
+✅ Success Case: CEO speech text analysis
+
+❌ Error Case: Empty text and invalid parameter handling
 ```
 
-##  演示内容
+## Notes
+API Key is optional - the tool runs in simulation mode without it
 
-运行 `demo.py` 会展示：
--  **成功案例**：CEO演讲文本分析
--  **错误案例**：空文本、无效参数处理
-
-## ⚠️ 注意事项
-
-- API Key 是可选配置，不配置也能运行（使用模拟模式）
-- 如果要使用真实 API，请确保账户有余额
-- 永远不要提交 `.env` 文件到 GitHub
+If using the real API, ensure your account has sufficient balance
